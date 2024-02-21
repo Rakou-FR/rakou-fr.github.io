@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formulaire de mots</title>
+<title>Page de mots</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -43,7 +43,7 @@
 <body>
 
 <div class="container">
-    <h2>Formulaire de mots</h2>
+    <h2>Recherche de mots</h2>
     
     <div class="input-group">
         <label for="mot1">Mot 1 :</label>
@@ -65,21 +65,52 @@
         <input type="text" id="mot4">
     </div>
     
-    <button onclick="valider()">Valider</button>
+    <button onclick="rechercher()">Valider</button>
     
     <div id="result"></div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
 <script>
-    function valider() {
+    function rechercher() {
+        // Récupérer les valeurs des cases de mots
         var mot1 = document.getElementById('mot1').value;
         var mot2 = document.getElementById('mot2').value;
         var mot3 = document.getElementById('mot3').value;
         var mot4 = document.getElementById('mot4').value;
         
-        // Exécuter votre programme ou traitement avec les mots entrés ici
-        // Par exemple, pour afficher les mots dans la zone de résultat :
-        document.getElementById('result').innerHTML = "Mots saisis : " + mot1 + ", " + mot2 + ", " + mot3 + ", " + mot4;
+        // Lancer la recherche dans le fichier Excel
+        // Ici, vous devriez écrire le code pour charger votre fichier Excel et effectuer la recherche
+        // Cet exemple suppose que vous avez un fichier Excel nommé "donnees.xlsx" et que la colonne de recherche est nommée "Mots"
+        var resultat = rechercherDansExcel(['mot1', 'mot2', 'mot3', 'mot4']);
+
+        // Afficher les résultats dans la zone d'affichage
+        document.getElementById('result').innerHTML = "Résultat de la recherche : " + resultat;
+    }
+
+    function rechercherDansExcel(mots) {
+        // À remplacer avec votre code pour charger et rechercher dans le fichier Excel
+        // Voici un exemple simple qui suppose que vous avez déjà chargé le fichier Excel
+        var donneesExcel = [
+            { Mots: 'chat' },
+            { Mots: 'chien' },
+            { Mots: 'oiseau' }
+        ];
+
+        // Recherche dans les données Excel
+        var resultat = [];
+        mots.forEach(function(mot) {
+            var trouve = false;
+            for (var i = 0; i < donneesExcel.length; i++) {
+                if (donneesExcel[i].Mots === mot) {
+                    trouve = true;
+                    break;
+                }
+            }
+            resultat.push(trouve ? 'Trouvé' : 'Non trouvé');
+        });
+
+        return resultat.join(', ');
     }
 </script>
 
