@@ -65,6 +65,7 @@
         <input type="text" id="mot4">
     </div>
     
+    <input type="file" id="inputFile" accept=".xlsx,.xls">
     <button onclick="rechercher()">Valider</button>
     
     <div id="result"></div>
@@ -73,44 +74,45 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
 <script>
     function rechercher() {
-        // Récupérer les valeurs des cases de mots
-        var mot1 = document.getElementById('mot1').value;
-        var mot2 = document.getElementById('mot2').value;
-        var mot3 = document.getElementById('mot3').value;
-        var mot4 = document.getElementById('mot4').value;
-        
-        // Lancer la recherche dans le fichier Excel
-        // Ici, vous devriez écrire le code pour charger votre fichier Excel et effectuer la recherche
-        // Cet exemple suppose que vous avez un fichier Excel nommé "donnees.xlsx" et que la colonne de recherche est nommée "Mots"
-        var resultat = rechercherDansExcel(['mot1', 'mot2', 'mot3', 'mot4']);
-
-        // Afficher les résultats dans la zone d'affichage
-        document.getElementById('result').innerHTML = "Résultat de la recherche : " + resultat;
-    }
-
-    function rechercherDansExcel(mots) {
-        // À remplacer avec votre code pour charger et rechercher dans le fichier Excel
-        // Voici un exemple simple qui suppose que vous avez déjà chargé le fichier Excel
-        var donneesExcel = [
-            { Mots: 'chat' },
-            { Mots: 'chien' },
-            { Mots: 'oiseau' }
+        var mots = [
+            document.getElementById('mot1').value,
+            document.getElementById('mot2').value,
+            document.getElementById('mot3').value,
+            document.getElementById('mot4').value
         ];
 
-        // Recherche dans les données Excel
-        var resultat = [];
-        mots.forEach(function(mot) {
-            var trouve = false;
-            for (var i = 0; i < donneesExcel.length; i++) {
-                if (donneesExcel[i].Mots === mot) {
-                    trouve = true;
-                    break;
+        var inputFile = document.getElementById('inputFile').files[0];
+        if (!inputFile) {
+            alert('Veuillez sélectionner un fichier Excel.');
+            return;
+        }
+
+        var fileReader = new FileReader();
+        fileReader.onload = function(e) {
+            var data = new Uint8Array(e.target.result);
+            var workbook = XLSX.read(data, { type: 'array' });
+
+            var sheet = workbook.Sheets[workbook.SheetNames[0]];
+            
+            var resultHTML = '';
+            for (var rowNum = sheet['!range'].s.r; rowNum <= sheet['!range'].e.r; rowNum++) {
+                var row = sheet[XLSX.utils.encode_row(rowNum)];
+                var rowText = XLSX.utils.sheet_to_json(row, { header: 1 })[0].join(' ');
+                var motTrouve = mots.find(function(mot) {
+                    return rowText.includes(mot);
+                });
+                if (motTrouve) {
+                    resultHTML += '<p>Ligne trouvée : ' + rowText + '</p>';
                 }
             }
-            resultat.push(trouve ? 'Trouvé' : 'Non trouvé');
-        });
 
-        return resultat.join(', ');
+            if (resultHTML === '') {
+                resultHTML = '<p>Aucune ligne correspondante trouvée.</p>';
+            }
+
+            document.getElementById('result').innerHTML = resultHTML;
+        };
+        fileReader.readAsArrayBuffer(inputFile);
     }
 </script>
 
