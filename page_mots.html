@@ -9,11 +9,23 @@
         font-family: Arial, sans-serif;
     }
     .container {
-        max-width: 600px;
+        max-width: 800px;
         margin: 0 auto;
         padding: 20px;
     }
-    .input-group {
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+    }
+    .column {
+        flex: 1;
+        margin-right: 10px;
+    }
+    .column:last-child {
+        margin-right: 0;
+    }
+    .input-item {
         margin-bottom: 15px;
     }
     label {
@@ -41,79 +53,142 @@
 </style>
 </head>
 <body>
-
-<div class="container">
-    <h2>Recherche de mots</h2>
+    <div class="container">
+        <h2>Recherche de mots</h2>
+        
+        <div class="row">
+            <div class="column">
+                <div class="input-item">
+                    <label for="IMMATRICULATION">IMMATRICULATION :</label>
+                    <input type="text" id="IMMATRICULATION">
+                </div>
+                <div class="input-item">
+                    <label for="NOM">NOM :</label>
+                    <input type="text" id="NOM">
+                </div>
+                <div class="input-item">
+                    <label for="MARQUE">MARQUE :</label>
+                    <input type="text" id="MARQUE">
+                </div>
+            </div>
+            
+            <div class="column">
+                <div class="input-item">
+                    <label for="GRADE">GRADE :</label>
+                    <input type="text" id="GRADE">
+                </div>
+                <div class="input-item">
+                    <label for="UNITE">UNITE :</label>
+                    <input type="text" id="UNITE">
+                </div>
+                <div class="input-item">
+                    <label for="MODELE">MODELE :</label>
+                    <input type="text" id="MODELE">
+                </div>
+            </div>
     
-    <div class="input-group">
-        <label for="mot1">Mot 1 :</label>
-        <input type="text" id="mot1">
+            <div class="column">
+                <div class="input-item">
+                    <label for="PRENOM">PRENOM :</label>
+                    <input type="text" id="PRENOM">
+                </div>
+                <div class="input-item">
+                    <label for="CIE">CIE :</label>
+                    <input type="text" id="CIE">
+                </div>
+                <div class="input-item">
+                    <label for="SERVICE">SERVICE :</label>
+                    <input type="text" id="SERVICE">
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="column">
+                <div class="input-item">
+                    <label for="NUMTEL">NUM. TEL. :</label>
+                    <input type="text" id="NUMTEL">
+                </div>
+            </div>
+            <div class="column">
+                <div class="input-item">
+                    <label for="NOPARKING">N° PARKING :</label>
+                    <input type="text" id="NOPARKING">
+                </div>
+            </div>
+            <div class="column">
+                <div class="input-item">
+                    <a href="doc.html">Exemples de requetes & Aide</a>
+                </div>
+            </div>
+        </div>
+        
+        <button onclick="rechercher()">Rechercher</button>
+        
+        <div id="result"></div>
     </div>
     
-    <div class="input-group">
-        <label for="mot2">Mot 2 :</label>
-        <input type="text" id="mot2">
-    </div>
-    
-    <div class="input-group">
-        <label for="mot3">Mot 3 :</label>
-        <input type="text" id="mot3">
-    </div>
-    
-    <div class="input-group">
-        <label for="mot4">Mot 4 :</label>
-        <input type="text" id="mot4">
-    </div>
-    
-    <input type="file" id="inputFile" accept=".xlsx,.xls">
-    <button onclick="rechercher()">Rechercher dans le fichier Excel</button>
-    
-    <div id="result"></div>
-</div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
 <script>
-    function rechercher() {
-        var mots = [
-            document.getElementById('mot1').value,
-            document.getElementById('mot2').value,
-            document.getElementById('mot3').value,
-            document.getElementById('mot4').value
-        ];
+function rechercher() {
+    var IMMATRICULATION = document.getElementById('IMMATRICULATION').value.trim();
+    var NOM = document.getElementById('NOM').value.trim();
+    var MARQUE = document.getElementById('MARQUE').value.trim();
+    var GRADE = document.getElementById('GRADE').value.trim();
+    var UNITE = document.getElementById('UNITE').value.trim();
+    var MODELE = document.getElementById('MODELE').value.trim();
+    var PRENOM = document.getElementById('PRENOM').value.trim();
+    var CIE = document.getElementById('CIE').value.trim();
+    var SERVICE = document.getElementById('SERVICE').value.trim();
+    var NUMTEL = document.getElementById('NUMTEL').value.trim();
+    var NOPARKING = document.getElementById('NOPARKING').value.trim();
 
-        var inputFile = document.getElementById('inputFile').files[0];
-        if (!inputFile) {
-            alert('Veuillez sélectionner un fichier Excel.');
-            return;
-        }
+    var inputFile = "Base_VHL.xlsx";
 
-        var fileReader = new FileReader();
-        fileReader.onload = function(e) {
-            var data = new Uint8Array(e.target.result);
+    // Charger le fichier Excel
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", inputFile, true);
+    xhr.responseType = "arraybuffer";
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            var data = new Uint8Array(xhr.response);
             var workbook = XLSX.read(data, { type: 'array' });
 
-            var sheet = workbook.Sheets[workbook.SheetNames[0]];
+            // Récupérer la première feuille de calcul
+            var sheetName = workbook.SheetNames[0];
+            var sheet = workbook.Sheets[sheetName];
 
-            var resultHTML = '';
-            for (var rowNum = sheet['!range'].s.r; rowNum <= sheet['!range'].e.r; rowNum++) {
-                var row = sheet[XLSX.utils.encode_row(rowNum)];
-                var rowText = XLSX.utils.sheet_to_json(row, { header: 1 })[0].join(' ');
-                var motTrouve = mots.find(function(mot) {
-                    return rowText.includes(mot);
-                });
-                if (motTrouve) {
-                    resultHTML += '<p>Ligne trouvée : ' + rowText + '</p>';
+            // Initialiser le résultat
+            var resultHTML = '<h3>Résultats de la recherche :</h3>';
+
+            // Parcourir les lignes de la feuille de calcul
+            XLSX.utils.sheet_to_json(sheet).forEach(function(row) {
+                // Vérifier si la ligne correspond aux critères de recherche
+                if ((IMMATRICULATION === '' || row['IMMATRICULATION'] === IMMATRICULATION) &&
+                    (NOM === '' || row['NOM'] === NOM) &&
+                    (MARQUE === '' || row['MARQUE'] === MARQUE) &&
+                    (GRADE === '' || row['GRADE'] === GRADE) &&
+                    (UNITE === '' || row['UNITE'] === UNITE) &&
+                    (MODELE === '' || row['MODELE'] === MODELE) &&
+                    (PRENOM === '' || row['PRENOM'] === PRENOM) &&
+                    (CIE === '' || row['CIE'] === CIE) &&
+                    (SERVICE === '' || row['SERVICE'] === SERVICE) &&
+                    (NUMTEL === '' || row['NUMTEL'] === NUMTEL) &&
+                    (NOPARKING === '' || row['NOPARKING'] === NOPARKING)) {
+                    // Ajouter la ligne au résultat
+                    resultHTML += '<p>Information(s) trouvée : ' + Object.values(row).join(' | ') + '</p>';
                 }
-            }
+            });
 
-            if (resultHTML === '') {
-                resultHTML = '<p>Aucune ligne correspondante trouvée.</p>';
+            // Afficher le résultat
+            if (resultHTML === '<h3>Résultats de la recherche :</h3>') {
+                resultHTML += '<p>Aucune données correspondante trouvée.</p>';
             }
-
             document.getElementById('result').innerHTML = resultHTML;
-        };
-        fileReader.readAsArrayBuffer(inputFile);
-    }
+        }
+    };
+    xhr.send(null);
+}
 </script>
 
 </body>
