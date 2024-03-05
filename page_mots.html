@@ -66,7 +66,7 @@
     </div>
     
     <input type="file" id="inputFile" accept=".xlsx,.xls">
-    <button onclick="rechercher()">Valider</button>
+    <button onclick="rechercher()">Rechercher dans le fichier Excel</button>
     
     <div id="result"></div>
 </div>
@@ -93,7 +93,7 @@
             var workbook = XLSX.read(data, { type: 'array' });
 
             var sheet = workbook.Sheets[workbook.SheetNames[0]];
-            
+
             var resultHTML = '';
             for (var rowNum = sheet['!range'].s.r; rowNum <= sheet['!range'].e.r; rowNum++) {
                 var row = sheet[XLSX.utils.encode_row(rowNum)];
