@@ -35,7 +35,7 @@ body {
 }
 
 #liens {
-    color: #6B8E23 ;
+    color: #6B8E23;
 }
 
 #command-input {
@@ -47,8 +47,9 @@ body {
 }
 
 #output {
-    white-space: pre;
+    white-space: pre-wrap; /* Permet au texte de se mettre à la ligne */
     margin-bottom: 10px;
+    overflow-wrap: break-word; /* Gère le débordement des mots */
 }
 
 #terminal::-webkit-scrollbar {
