@@ -1,0 +1,60 @@
+body {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#terminal {
+    width: 95%;
+    max-width: 100%;
+    background-color: #000000;
+    padding: 20px;
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    height: 95vh;
+}
+
+#input-line {
+    display: flex;
+}
+
+.prompt {
+    color: #7F00FF;
+    margin-right: 5px;
+}
+
+.command {
+    color: #7F00FF; /* Couleur verte */
+}
+
+#liens {
+    color: #6B8E23 ;
+}
+
+#command-input {
+    background: none;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    width: 100%;
+}
+
+#output {
+    white-space: pre;
+    margin-bottom: 10px;
+}
+
+#terminal::-webkit-scrollbar {
+    width: 5px;
+}
+
+#terminal::-webkit-scrollbar-thumb {
+    background-color: #555;
+}
