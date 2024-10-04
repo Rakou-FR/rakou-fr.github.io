@@ -4,13 +4,13 @@ const output = document.getElementById('output');
 
 // Available commands and their responses
 const commands = {
-    "help": "Commandes disponible :\n- help\t- date\n- pwd\t- whoami\n- clear\t- etudes\n- rl\t- projets\n- ls\t- contact\n- competences\t-langues\n- ProjetPro\t- ",
+    "help": "Commandes disponible :\n- help\t- date\n- pwd\t- whoami\n- clear\t- etudes\n- rl\t- projets\n- ls\t- contact\n- competences\t-langues\n- ProjetPro",
     "date": new Date().toString(),
     "pwd": "/home/balint/portfolio",
     "whoami": `Salut, moi c'est Balint (oui, mon prénom n'est pas commun, c'est hongrois). J'adore l'informatique depuis tout petit. 
 J'ai commencé par jouer aux jeux vidéo, puis j'ai rapidement dérivé vers la programmation dès mon jeune âge. Au début, je ne comprenais pas grand-chose, 
 mais j'ai continué et cela est devenu une passion et un projet professionnel.`,
-    "ProjetPro": "...",
+    "ProjetPro": "Non remplis encore mais dans l'optique de travailler en cyber-sec donc plusieurs choix de métier.",
     "clear": "clear",
     "langues" : "- Hongroie (natif)\n- Francais (natif)\n- Anglais (B2/C1)\n- Espagnol A1/A2",
     "competences" : `Langages de programation : 
