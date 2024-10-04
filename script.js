@@ -1,8 +1,9 @@
 const terminal = document.getElementById('terminal');
 const entrecommande = document.getElementById('command-input');
 const output = document.getElementById('output');
+const audio = new Audio('./rl.mp3');
 
-// Available commands and their responses
+
 const commands = {
     "help": "Commandes disponible :\n- help\t- date\n- pwd\t- whoami\n- clear\t- etudes\n- rl\t- projets\n- ls\t- contact\n- competences\t-langues\n- ProjetPro",
     "date": new Date().toString(),
@@ -34,7 +35,7 @@ Autres :
 - Animation 3D Blender
 - Unity
     `,
-    
+    "rl": "You have been RickRolled by Rakou",
     "etudes": "Lycée :\n\tBaccalauréat général :\n\t\tTerminale : \n\t\t\t- Mathématique\n\t\t\t- Numérique et science de l'informatique\n\t\tPremiere :\n\t\t\t- Science de l'ingénieur\n\nPost-Bac : \n\tLicence à Paul Sabatier : \n\t\t- Licence Flex Informatique L1",
     "cls": "clear",
     "projets": `Date début | Description | Nom du projet | Url et Images | Statuts
@@ -67,9 +68,12 @@ function executer_commandes(command) {
     if (command === 'clear' || command === "cls") {
         output.innerHTML = '';
     } else if (command === 'rl') {
-        // Redirige vers la vidéo Rickroll
-        window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
-        // window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
+        audio.play();
+        setTimeout(() => {
+            audio.pause();  // Arrête le son après 15 secondes
+            audio.currentTime = 0;  // Remet à zéro le temps de la piste
+        }, 5000);
+        output.innerHTML += `<div>${lignedecommande}<br>${commands[command]}</div>`;
     } else if (command in commands) {
         output.innerHTML += `<div>${lignedecommande}<br>${commands[command]}</div>`;
     } else {
