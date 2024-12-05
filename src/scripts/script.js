@@ -1,14 +1,14 @@
 const terminal = document.getElementById('terminal');
 const commandInput = document.getElementById('command-input');
 const output = document.getElementById('output');
-let suggestionBox; // Conteneur pour les suggestions
+let suggestionBox; 
 
-// Initialisation des commandes
+
 let commands = {};
-let fileSystem = {}; // Structure de fichier
-let currentDir = 'root'; // Dossier actuel
+let fileSystem = {}; 
+let currentDir = 'root';
 
-// Charger les commandes depuis un fichier JSON
+
 async function loadCommands() {
     try {
         const response = await fetch('../../JSON/donnees.json');
@@ -18,27 +18,25 @@ async function loadCommands() {
     }
 }
 
-// Charger la structure des fichiers depuis un fichier JSON
 async function loadFileSystem() {
     try {
-        const response = await fetch('../../JSON/roots.json'); // Spécifie le chemin de ton fichier JSON
+        const response = await fetch('../../JSON/roots.json');
         fileSystem = await response.json();
     } catch (error) {
         output.innerHTML += `<div>Erreur lors du chargement du système de fichiers : ${error.message}</div>`;
     }
 }
 
-// Fonction pour exécuter une commande
+
 function executeCommand(command) {
     const commandLine = `<span class="command">balint@linux:~${currentDir === 'root' ? '' : '/' + currentDir}$ ${command}</span>`;
     
     if (command === 'clear' || command === "cls") {
-        output.innerHTML = ''; // Efface la sortie
+        output.innerHTML = ''; 
     } else if (command === 'date') {
         const currentDate = new Date().toString();
         output.innerHTML += `<div>${commandLine}<br>${currentDate}</div>`;
     } else if (command === 'rl') {
-        // Lancer Rick Roll pour 5 secondes
         const rickrollAudio = document.getElementById('rickroll-audio');
         
         if (rickrollAudio) {
@@ -53,7 +51,7 @@ function executeCommand(command) {
             output.innerHTML += `<div>${commandLine}<br>Erreur : Impossible de charger l'audio</div>`;
         }
     } else if (command === 'ls') {
-        // Lister les fichiers du répertoire actuel
+        
         const currentFiles = Object.keys(fileSystem[currentDir]);
         if (currentFiles.length > 0) {
             output.innerHTML += `<div>${commandLine}<br>${currentFiles.join('<br>')}<br>[INFO] Directorys, en cours de developpement pas encore fonctionnel</div>`;
@@ -61,11 +59,10 @@ function executeCommand(command) {
             output.innerHTML += `<div>${commandLine}<br>Le répertoire est vide.<br>[INFO] En cours de developpement pas encore fonctionnel</div>`;
         }
     } else if (command.startsWith('cd ')) {
-        // Changer de répertoire
+        
         const targetDir = command.substring(3).trim();
         
         if (targetDir === '..') {
-            // Retourner au répertoire parent
             if (currentDir !== 'root') {
                 const parentDir = currentDir.split('/').slice(0, -1).join('/');
                 currentDir = parentDir || 'root';
@@ -95,7 +92,6 @@ function executeCommand(command) {
     terminal.scrollTop = terminal.scrollHeight;
 }
 
-// Fonction pour afficher les suggestions
 function showSuggestions(input) {
     if (!suggestionBox) {
         suggestionBox = document.createElement('ul');
@@ -103,7 +99,6 @@ function showSuggestions(input) {
         terminal.appendChild(suggestionBox);
     }
     
-    // Réinitialiser la boîte de suggestions
     suggestionBox.innerHTML = '';
     
     if (input.trim() === '') {
@@ -117,7 +112,6 @@ function showSuggestions(input) {
         return;
     }
     
-    // Afficher les suggestions
     suggestions.forEach(suggestion => {
         const item = document.createElement('li');
         item.textContent = suggestion;
@@ -132,50 +126,45 @@ function showSuggestions(input) {
     suggestionBox.style.display = 'block';
 }
 
-// Gérer l'événement de pression de la touche Entrée, Tab et autocomplétion
 commandInput.addEventListener('keydown', function (event) {
     if (event.key === "Enter") {
         const command = commandInput.value.trim();
         executeCommand(command);
-        commandInput.value = ''; // Efface le champ de saisie après chaque commande
+        commandInput.value = '';
         if (suggestionBox) suggestionBox.style.display = 'none';
     } else if (event.key === "Tab") {
-        event.preventDefault(); // Empêche le comportement par défaut de la touche Tab
+        event.preventDefault();
         
         const input = commandInput.value.trim();
         const suggestions = Object.keys(commands).filter(cmd => cmd.startsWith(input));
         
         if (suggestions.length === 1) {
-            // Compléter directement si une seule suggestion correspond
             commandInput.value = suggestions[0];
             if (suggestionBox) suggestionBox.style.display = 'none';
         } else if (suggestions.length > 1) {
-            // Afficher les suggestions si plusieurs possibilités
             showSuggestions(input);
         }
     }
 });
 
-// Donner le focus au champ d'entrée lors d'un clic sur le terminal
 terminal.addEventListener('click', function () {
     commandInput.focus();
 });
 
-// Charger les commandes et la structure des fichiers au chargement de la page
+
 window.onload = async function () {
     await loadCommands();
     await loadFileSystem();
     displayWelcomeMessage();
 };
 
-// Afficher le message de bienvenue
 function displayWelcomeMessage() {
     const welcomeMessage = `
 Bienvenue sur mon portfolio.
 L'utilisation se fait comme dans une invite de commande shell/bash.
 Merci, KIS BALINT.
 
-[INFO] : version plein écran conseiller pour cause, bug d'affichage terminal
+[INFO] : version plein écran conseiller pour cause, bug d'affichage terminal.
 
 Veuillez effectuer la commande : help
     `;
