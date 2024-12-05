@@ -1,0 +1,110 @@
+{
+    "help": {
+        "ligne1": "Commandes disponible :",
+        "ligne2": "- help\t- date",
+        "ligne3": "- pwd\t- whoami",
+        "ligne4": "- clear\t- etudes",
+        "ligne5": "- cls\t- projets",
+        "ligne6": "- ls\t- contact",
+        "ligne7": "- projetpro\t- langues",
+        "ligne8": "- rl"
+    },
+    "date": {
+        "ligne1": "new Date().toString()"
+    },
+    "pwd": {
+        "ligne1": "/home/balint/portfolio"
+    },
+    "whoami": {
+        "ligne1": "KIS-Balint@linux"
+    },
+    "projetpro": {
+        "ligne1": "Ayant grandi dans une famille militaire (Légion étrangère), j'ai toujours été sensible à cet environnement.",
+        "ligne2": "En grandissant, j'ai découvert l'informatique ainsi que mon envie d'intégrer l'armée. J'ai donc",
+        "ligne3": "effectué des recherches pour savoir si les deux corps de métiers étaient compatibles, et OUI.",
+        "ligne4": "Ainsi, j'ai pour objectif d'intégrer l'armée de terre après un Bac+2 ou Bac+3 en tant qu'officier sous contrat.",
+        "ligne5": "Je suis intéressé par le développement et la cybersécurité. J'aurai l'occasion de choisir durant mon cursus.",
+        "ligne6": "",
+        "ligne7": "J'ai également pour projet d'obtenir plusieurs certifications, telles que celles de Cisco ou encore celle d'IBM en Développement Cloud Full Stack."
+    },
+    "clear": {
+        "ligne1": "clear"
+    },
+    "langues": {
+        "ligne1": "- Hongroie (natif)",
+        "ligne2": "- Francais (natif)",
+        "ligne3": "- Anglais (B2/C1)",
+        "ligne4": "- Espagnol (A1/A2)"
+    },
+    "competences": {
+        "ligne0": "Voici les langages et outils j'ai déjà expérimentés et utilisés, avec les niveaux intermédiaire, avancé et confirmé correspondant à une utilisation régulière et graduée.",
+        "ligne01" : "",
+        "ligne1": "Langages de programmation :",
+        "ligne2": "- Python confirmé    - Node JS confirmé  - Shell avancé",
+        "ligne3": "- C débutant         - Java débutant     - HTML débutant",
+        "ligne4": "- CSS débutant       - SQL avancé        - Latex intermédiaire",
+        "ligne5": "- Uscript intermédiaire - Docker intermédiaire",
+        "ligne6": "",
+        "ligne7": "Frameworks :",
+        "ligne8": "- React débutant     -Django débutant",
+        "ligne9": "",
+        "ligne10": "Outils de travail :",
+        "ligne11": "- VsCode confirmé   - Github avancé   -GitGraph avancé",
+        "ligne12": "- Notion intermédiaire"
+    },
+    "etudes": {
+        "ligne1": "Lycée :",
+        "ligne2": "\tBaccalauréat général :",
+        "ligne3": "\t\tTerminal :",
+        "ligne4": "\t\t\t- Mathématiques",
+        "ligne5": "\t\t\t- Numérique et science de l'informatique",
+        "ligne6": "\t\tPremière :",
+        "ligne7": "\t\t\t- Science de l'ingénieur",
+        "ligne8": "Post-Bac :",
+        "ligne9": "\tLicence à Paul Sabatier :",
+        "ligne10": "\t\t- Licence Flex Informatique L1"
+    },
+    "cls": {
+        "ligne1": "clear"
+    },
+    "projets": {
+        "ligne1": "10/02/2024   Solution logicielle pour l'achat et la revente Vinted                             Retools                     <a id=\"liens\" href=\"https://discord.gg/8yxWK8yNC2\" target=\"_blank\">Le support de déploiement</a>                Fini",
+        "ligne2": "             interface Client-Server via API Discord                                                                       <a id=\"liens\" href=\"https://imgur.com/xgH7hEt\" target=\"_blank\">Image App Tendances</a>                     ",
+        "ligne3": "             A but lucratif.                                                                                               <a id=\"liens\" href=\"https://imgur.com/kwmfUPT\" target=\"_blank\">Alerte Automatique Vinted</a>               ",
+        "ligne4": "                                                                                                                           <a id=\"liens\" href=\"https://imgur.com/VECz4k1\" target=\"_blank\">Alerte Automatique Grossistes Vinted</a>    ",
+        "ligne5": "             Le projet comporte plusieurs parties logiciels :                                                              <a id=\"liens\" href=\"https://imgur.com/ktSgyOY\" target=\"_blank\">Estimations de niche</a>                    ",
+        "ligne6": "             - estimations, - facturation, - tendances, - crawler                                                                                                  ",
+        "ligne7": "             - scraper web, -scraper api, - Alerte Vinted,                                                                                                         ",
+        "ligne8": "             - Alerte Grossiste, - Vérificateur REGEX numéro série                                                                                                 ",
+        "ligne9": "             - Crawler Vinted pour les niches, - Comptabilité                                                                                                      ",
+        "ligne10": "             Technologies utilisées :                                                                                                                              ",
+        "ligne11": "             Python, Node JS, PILLOW, MongoDB, Shell, CSV, FFMEG                                                                                                   ",
+        "ligne12": "             FastAPI, Whop API                                                                                                                                     ",
+        "ligne122" :"",
+        "ligne13": "29/09/2024   Solution web de Retools X Vintzen                                                Retools X Vintzen           <a id=\"liens\" href=\"https://vintzen.fr/\" target=\"_blank\">Vintzen (Maintenance Possible)</a>                En cours",
+        "ligne133": "             Transition des solutions logiciels de Retools vers un Dashboard web",
+        "ligne1333":"            ",
+        "ligne14": "             Site internet vitrine du client                                                                              <a id=\"liens\" href=\"https://worldresell.fr/\" target=\"_blank\">World resell</a>",
+        "ligne15": "             photo et image du site internet Dashboard sur un server test (pas de production encore)                      <a id=\"liens\" href=\"https://imgur.com/a/jQ64IrJ\" target=\"_blank\">lien externe</a>",
+        "ligne155": "",
+        "ligne16":"15/11/2024   Projet portfolio pour un ami de la fac, en tant que developpeur qui aide                                     <a id=\"liens\" href=\"https://kellyan-chartier.github.io\" target=\"_blank\">lien vers le portfolio</a>                       Fini",
+        "ligne17": "",
+        "ligne18":"15/11/2024   Projet portfolio pour un autre ami de la fac, en tant que developpeur qui aide (oui encore)                  <a id=\"liens\" href=\"https://meduse-arch.github.io\" target=\"_blank\">lien vers le portfolio</a>                       Fini",
+        "ligne19": "",
+        "ligne20":"Date postérieur   D'autre projets datant dy lycée et post-bac sont disponibles sur mon github                       <a id=\"liens\" href=\"https://github.com/Rakou-FR\" target=\"_blank\">Mon Github</a>"
+    },
+    "rl" : {
+        "ligne1": "You have been Rick Rolled"
+    },
+    "ls": {
+        "ligne1": "JSON/",
+        "ligne2": "SRC/",
+        "ligne3": "index.html"
+    },
+    "contact": {
+        "ligne1": "Numéro de téléphone : 06 95 77 05 65",
+        "ligne2": "Adresse email pro : balint.kis@outlook.fr",
+        "ligne3": "Github : <a id=\"liens\" href=\"https://github.com/Rakou-FR/\" target=\"_blank\">https://github.com/Rakou-FR/</a>",
+        "ligne4": "Curriculum vitae : <a id=\"liens\" href=\"https://imgur.com/XkUnnkf.png\" target=\"_blank\">lien externe</a>"
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "root": {
+      "JSON": {
+        "donnees.json": null,
+        "roots.json" : null
+      },
+      "src": {
+        "audio": {
+            "rick.mp3": null
+        },
+        "scripts": {
+            "script.js" : null
+        },
+        "styles":{
+            "styles.css": null
+        }
+      },
+      "index.html": null
+    }
+  }
+  
