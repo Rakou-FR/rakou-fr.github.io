@@ -172,8 +172,11 @@ window.onload = async function () {
 function displayWelcomeMessage() {
     const welcomeMessage = `
 Bienvenue sur mon portfolio.
-L'utilisation se fait comme dans un invite de commande.
+L'utilisation se fait comme dans une invite de commande shell/bash.
 Merci, KIS BALINT.
+
+[INFO] : version plein écran conseiller pour cause, bug d'affichage terminal
+
 Veuillez effectuer la commande : help
     `;
     output.innerHTML += `<div>${welcomeMessage}</div>`;
